@@ -1,7 +1,7 @@
 # Restful filter
 
 This library aim to convert querystring parameters into parsed json with related operators, 
-so you would able to use the parsed values into another query action like filtering by using your model on SQL library (knex, sequelize, etc).
+so you would able to use the parsed values into another query action like filtering by using Sequelize format.
 
 # Features
  - Filter querystring parameters
