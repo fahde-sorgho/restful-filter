@@ -42,9 +42,6 @@ const OPERATORS = {
   __notILike: {
     parser: require("./filters/notilike")
   },
-  __contains: {
-    parser: require("./filters/contains")
-  },
   __between: {
     parser: require("./filters/between")
   },
@@ -53,7 +50,7 @@ const OPERATORS = {
   }
 };
 
-const filtering = (config, queryString, allowedKeys) => {
+const filtering = (config, Op, queryString, allowedKeys) => {
   const filtered = [];
   _.entries(queryString).forEach(([key, value]) => {
     for (const [op, processor] of _.entries(OPERATORS)) {
@@ -67,7 +64,7 @@ const filtering = (config, queryString, allowedKeys) => {
           (allowedKeys !== null && allowedKeys.includes(check[1])) ||
           allowedKeys === null
         ) {
-          filtered.push(processor.parser(check[1], value));
+          filtered.push(processor.parser(check[1], value, Op));
         }
       }
     }

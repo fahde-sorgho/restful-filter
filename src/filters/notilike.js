@@ -1,10 +1,8 @@
 'use strict'
 
-module.exports = (column, value) => {
-  return {
-    operator: '$notILike',
-    operatorSQL: 'NOT ILIKE',
-    column,
-    value
-  }
+module.exports = (column, value, Op) => {
+  let toReturn = {};
+  toReturn[column] = {[Op.notILike]: value};
+
+  return toReturn;
 }

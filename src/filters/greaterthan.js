@@ -1,10 +1,8 @@
 'use strict'
 
-module.exports = (column, value) => {
-  return {
-    operator: '$gt',
-    operatorSQL: '>',
-    column,
-    value
-  }
+module.exports = (column, value, Op) => {
+  let toReturn = {};
+  toReturn[column] = {[Op.gt]: value};
+
+  return toReturn;
 }

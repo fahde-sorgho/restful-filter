@@ -1,10 +1,8 @@
 'use strict'
 
-module.exports = (column, value) => {
-  return {
-    operator: '$iLike',
-    operatorSQL: 'ILIKE',
-    column,
-    value
-  }
+module.exports = (column, value, Op) => {
+  let toReturn = {};
+  toReturn[column] = {[Op.iLike]: value};
+
+  return toReturn;
 }

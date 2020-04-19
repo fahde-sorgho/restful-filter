@@ -1,10 +1,8 @@
 'use strict';
 
-module.exports = (column, value) => {
-  return {
-    operator: '$in',
-    operatorSQL: 'IN',
-    column,
-    value: value.replace(/ /g, '').split(','),
-  };
+module.exports = (column, value, Op) => {
+  let toReturn = {};
+  toReturn[column] = {[Op.in]: value.replace(/ /g, '').split(',')};
+
+  return toReturn;
 };

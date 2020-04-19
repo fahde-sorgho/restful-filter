@@ -1,10 +1,8 @@
 'use strict'
 
-module.exports = (column, value) => {
-  return {
-    operator: '$ne',
-    operatorSQL: '!=',
-    column,
-    value
-  }
+module.exports = (column, value, Op) => {
+  let toReturn = {};
+  toReturn[column] = {[Op.ne]: value};
+
+  return toReturn;
 }
