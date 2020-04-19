@@ -1,9 +1,8 @@
 "use strict";
 
 const _ = require("lodash");
-const { Op } = require('sequelize');
 
-const parse = (config, queryString, allowedKeys = null) => {
+const parse = (config, queryString, allowedKeys = null, Op) => {
   return {
     filter: require("./filter")(config, Op ,queryString, allowedKeys),
     paginate: require("./paginate")(config, queryString),
