@@ -1,7 +1,7 @@
 # Restful filter
 
 This library aim to convert querystring parameters into parsed json with related operators, 
-so you would able to use the parsed values into another query action like filtering by using your model on SQL library (knex, sequelize, etc).
+so you would able to use the parsed values into another query action like filtering by using Sequelize format.
 
 # Features
  - Filter querystring parameters
@@ -11,10 +11,8 @@ so you would able to use the parsed values into another query action like filter
 ## Installation
 
     # via npm
-    npm i restful-filter --save
+    npm i https://github.com/fahde-sorgho/restful-filter.git --save
 
-    # via yarn
-    yarn add rest
 
 ## Usage
 
@@ -32,10 +30,10 @@ so you would able to use the parsed values into another query action like filter
       const searchParams = filter.parse(queryParams, allowedColumn).filter
 
       # now searchParams contains
-      # {
-      #   name: {operator: '$iLike', operatorSQL: 'ILIKE', column: 'name', value: 'aditya'},
-      #   age: {operator: '$eq', operatorSQL: '=', column: 'age', value: '25'}
-      # }
+      # [
+      #  { name: { [Symbol(ilike)]: 'aditya' } } ,
+      #  { age: { [Symbol(eq)]: '25' } } 
+      # ]
       #
       # password filter will not processed because not listed in the allowedColumn
     })
@@ -109,13 +107,13 @@ so you would able to use the parsed values into another query action like filter
   `__notILike` | Opposite of like with case insensitive (Postgres) | `?name__notILike=smith`
   `__in` | Find value which listed on given list | `?city__in=jakarta,bandung,bekasi`
   `__notIn` | Find value which not listed in given list | `?city__notIn=bogor,depok,tangerang`
-  `__contains` | Find value that contains in given list (Postgres) | `?name__contains=smith`
   `__between` | Find value which between 2 given values | `?date__between=2015-06-18,2017-05-31`
   `__notBetween` | Find value which is not between 2 given values | `?date__notBetween=2015-06-18,2017-05-31`
 
 ## Test
 
     npm run test
+    #Will fail for the moment
 
 # Note
 Please open a pull request for further abilities and another issues
